@@ -1,7 +1,9 @@
-function Node(val) {
+function Node(val, x, y) {
     this.value = val
     this.left = null
     this.right = null
+    this.x = 150
+    this.y = 150
 }
 
 Node.prototype.addNode = function(n){
@@ -23,7 +25,12 @@ Node.prototype.addNode = function(n){
 Node.prototype.visit = function(){
     if (this.left != null)
         this.left.visit()
-    console.log(this.value)
+    console.log("here",this.value)
+    fill(255)
+    noStroke()
+    console.log(this.value,this.x,this.y)
+    text(this.value, this.x, this.y)
+    
     if(this.right != null)
         this.right.visit()    
 

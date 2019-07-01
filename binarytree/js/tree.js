@@ -1,11 +1,13 @@
 function Tree() {
     this.root = null;
+    this.x = width/2 
+    this.y = height/2
 }
 
 Tree.prototype.addValue = function(n) {
     var n = new Node(n)
     if (this.root == null){
-        this.root = n
+        this.root = n 
     } else {
         this.root.addNode(n)
     } 

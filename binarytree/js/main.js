@@ -1,7 +1,8 @@
 var tree
 
 function setup() {
-    noCanvas();
+    createCanvas(400,400);
+    background(0)
     tree = new Tree()
     for (var i =0 ;i <=10 ; i++){
         tree.addValue(floor(random(0,100)))
@@ -10,15 +11,18 @@ function setup() {
     tree.addValue(3)
 
     console.log(tree)
+
     tree.traverse()
+    
 }
 
 
 
 
 function draw() {
-    background(255);
-    text("put your p5.js code here",10, frameCount % height);
+    fill (255)
+    noStroke()
+    
 }
 
 function windowResized() {

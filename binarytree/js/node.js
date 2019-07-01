@@ -44,7 +44,10 @@ Node.prototype.visit = function( parent){
 
 Node.prototype.search = function(val){
     if (this.value == val) {
+        fill(200,0,150,70)
+        ellipse (this.x,this.y, 25, 25)
         return this
+        
     } else { 
         if (val < this.value && this.left != null){
             return this.left.search(val)

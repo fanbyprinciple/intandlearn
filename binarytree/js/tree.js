@@ -1,13 +1,15 @@
 function Tree() {
     this.root = null;
-    this.x = width/2 
-    this.y = height/2
+    this.x = width/2
+    this.y = 16
 }
 
 Tree.prototype.addValue = function(n) {
     var n = new Node(n)
     if (this.root == null){
-        this.root = n 
+        this.root = n
+        this.root.x = width /2 
+        this.root.y = 16 
     } else {
         this.root.addNode(n)
     } 
@@ -15,7 +17,7 @@ Tree.prototype.addValue = function(n) {
 
 Tree.prototype.traverse = function() {
 
-    this.root.visit()
+    this.root.visit(this.root)
 
 }
 

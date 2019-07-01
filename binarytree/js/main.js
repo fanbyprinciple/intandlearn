@@ -2,7 +2,7 @@ var tree
 
 function setup() {
     createCanvas(400,400);
-    background(0)
+    background(60)
     tree = new Tree()
     for (var i =0 ;i <=10 ; i++){
         tree.addValue(floor(random(0,100)))
@@ -20,8 +20,7 @@ function setup() {
 
 
 function draw() {
-    fill (255)
-    noStroke()
+    
     
 }
 

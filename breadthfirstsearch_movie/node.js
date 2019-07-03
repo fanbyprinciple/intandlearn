@@ -7,4 +7,5 @@ function node(value){
 
 node.prototype.connect = function(neighbhor) {
   this.edges.push(neighbhor)
+  neighbhor.edges.push(this)
 }

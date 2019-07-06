@@ -1,4 +1,4 @@
-### Hello this is me prcticing various codes given in theCoding train intellingence and learning playlist
+### Hello this is me practicing various codes given in theCoding train intellingence and learning playlist
 
 ## I code most of the in p5.js web editor so hopefully it still works while you are watching this
 

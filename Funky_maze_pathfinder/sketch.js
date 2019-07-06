@@ -1,5 +1,5 @@
 var cols, rows
-var w = 40
+var w = 10
 var grid= []
 var currentCell
 
@@ -22,7 +22,7 @@ function setup() {
    for (var i=0; i < cols; i++ ){
      var cell = new Cell(i,j)
      grid.push(cell)
-   }
+   } 
   
   currentCell = grid[0]
    
@@ -35,11 +35,18 @@ function draw() {
     grid[i].show()
   }
   currentCell.visited = true
+  currentCell.highlight()
   
+  //Step 1
   console.log("neighbhors of : ", currentCell.i," ",currentCell.j )
   var next = currentCell.checkAround()
   if(next){
     next.visited = true
+    
+    //Step 3
+    removeWalls(currentCell, next)
+    
+    // Step 4
     currentCell = next
     
   }
@@ -70,10 +77,22 @@ function Cell(i,j){
       line(x,y,x,y+w)
     
     if(this.visited) {
+      noStroke()
       fill(255,0,255,100)
       rect(x,y,w,w)
     }
     
+  }
+  
+  this.highlight = function() {  
+    var x = this.i*w
+    var y = this.j*w
+    
+    noStroke()
+    fill(255,0,50,100)
+    rect(x,y,w,w)
+    
+  
   }
   
   this.checkAround = function(){
@@ -110,3 +129,37 @@ function Cell(i,j){
       
   }
 }
+
+
+
+function removeWalls(a, b){
+   var xDiff = a.i - b.i
+   if( xDiff === 1){
+     a.walls[3] = false
+     b.walls[1] = false
+     
+   } else if (xDiff === -1){
+     a.walls[1] = false
+     b.walls[3] = false  
+   }
+  
+  var yDiff =  a.j - b.j
+  if( yDiff === 1){
+     a.walls[0] = false
+     b.walls[2] = false
+     
+   } else if (yDiff === -1){
+     a.walls[2] = false
+     b.walls[0] = false  
+   }
+  
+}
+
+
+
+
+
+
+
+
+

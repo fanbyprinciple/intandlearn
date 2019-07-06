@@ -2,6 +2,7 @@ var cols, rows
 var w = 10
 var grid= []
 var currentCell
+var stack = []
 
 function index  (i ,j){
   if(i<0 || j <0 || i > cols -1 || j > rows -1){
@@ -30,11 +31,14 @@ function setup() {
 
 function draw() {
   background(51);
-  frameRate(5)
+  //frameRate(5)
   for(var i = 0; i < grid.length; i++){
     grid[i].show()
   }
   currentCell.visited = true
+  
+  
+  
   currentCell.highlight()
   
   //Step 1
@@ -43,12 +47,20 @@ function draw() {
   if(next){
     next.visited = true
     
+    //step 2 
+    stack.push(currentCell)  
+    
     //Step 3
     removeWalls(currentCell, next)
     
     // Step 4
     currentCell = next
     
+  } else if (stack.length > 0){
+    
+    var cell = stack.pop()
+    currentCell = cell
+      
   }
 
 

@@ -8,4 +8,5 @@ ______
 1. [`Binarytree`](not working)
 2. [`bradthfirstsearch_movie`](https://editor.p5js.org/fanbyprinciple/present/hkNkhOYVL)
 3. [`Gorgeous_maze`](https://editor.p5js.org/fanbyprinciple/present/BCRsUgTgS)
-3. [`Funky_maze_pathfinder`](https://editor.p5js.org/fanbyprinciple/present/z1Giukzjmy)
+4. [`Funky_maze_pathfinder`](https://editor.p5js.org/fanbyprinciple/present/z1Giukzjmy)
+4. [`Astar`](https://editor.p5js.org/fanbyprinciple/present/JeCz6Oncy)  need to revisit this.

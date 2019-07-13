@@ -1,63 +1,72 @@
-// used to create the initial population
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Genetic Algorithm, Evolving Shakespeare
+
+// A class to describe a psuedo-DNA, i.e. genotype
+//   Here, a virtual organism's DNA is an array of character.
+//   Functionality:
+//      -- convert DNA into a string
+//      -- calculate DNA's "fitness"
+//      -- mate DNA with another set of DNA
+//      -- mutate DNA
 
 function newChar() {
-
-    let c = floor(random(64,122))
-    if(c === 64) c = 32
-
-    return String.fromCharCode(c)
-}
-
-class DNA {
-    //num represents phrase length
+    let c = floor(random(64, 122));
+    if (c === 64) c = 32;
+  
+    return String.fromCharCode(c);
+  }
+  
+  // Constructor (makes a random DNA)
+  class DNA {
     constructor(num) {
-        this.genes = []
-        this.fitness = 0
-        for (let i = 0; i < num; i++){
-            this.genes[i] = newChar()
-        }
+      // The genetic sequence
+      this.genes = [];
+      this.fitness = 0;
+      for (let i = 0; i < num; i++) {
+        this.genes[i] = newChar(); // Pick from range of chars
+      }
     }
-
-
-    //return genes array as a string
+  
+    // Converts character array to a String
     getPhrase() {
-        return this.genes.join("")
+      return this.genes.join("");
     }
-
-
-    // calculating the fitness
-    calcFitness(target){
-        let score = 0
-        for (let i=0; i , this.genes.length; i++ ){
-            if(this.genes[i] == target.charAt(i)){
-                score++
-            }
+  
+    // Fitness function (returns floating point % of "correct" characters)
+    calcFitness(target) {
+      let score = 0;
+      for (let i = 0; i < this.genes.length; i++) {
+        if (this.genes[i] == target.charAt(i)) {
+          score++;
         }
-        this.fitness = score / target.length
+      }
+      this.fitness = score / target.length;
     }
-
-    // creating the next generation
+  
+    // Crossover
     crossover(partner) {
-
-        let child = new DNA(this.genes.length)
-
-        let midpoint = floor(random(this.genes.length))
-
-        for(let i= 0; i < this.genes.length; i ++){
-            if(i > midpoint) child.genes[i] = this.genes[i]
-            else child.genes[i] = partner.genes[i]
-
-        }
-        return child
+      // A new child
+      let child = new DNA(this.genes.length);
+  
+      let midpoint = floor(random(this.genes.length)); // Pick a midpoint
+  
+      // Half from one, half from the other
+      for (let i = 0; i < this.genes.length; i++) {
+        if (i > midpoint) child.genes[i] = this.genes[i];
+        else child.genes[i] = partner.genes[i];
+      }
+      return child;
     }
-
-    // Adds the probability of adding a random new character to the population
-    mutate(mutationRate){
-
-        for(let i = 0; i < this.genes.length; i++){
-            if(radom(1)< mutationRate){
-                this.genes[i] = newChar()
-            }
+  
+    // Based on a mutation probability, picks a new random character
+    mutate(mutationRate) {
+      for (let i = 0; i < this.genes.length; i++) {
+        if (random(1) < mutationRate) {
+          this.genes[i] = newChar();
         }
+      }
     }
-}
+  }

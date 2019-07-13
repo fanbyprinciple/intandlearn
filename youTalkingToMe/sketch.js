@@ -56,15 +56,25 @@ function draw() {
         let partnerA = matingPool[a]
         let partnerB = matingPool[b]
 
-        let child = partnerA.crossover(partner)
+        let child = partnerA.crossover(partnerB)
         child.mutate(mutationRate)
         population[i] = child
+
+
+    }
+
+    for(let i =0 ; i < population.length; i++) {
+        console.log(population[i].getPhrase())
+        if(population[i]== target){
+            console.log("found")
+        }
     }
 
     // this is for showing all the phrases
     let everything = ""
     for(let i = 0; i< population.length; i++){
-        if(i%4 == 0) everything += "<br>"
+        //if(i%4 == 0) everything += "<br>"
+        everything +="<br>"
         everything += population[i].getPhrase() + "   "
 
     }

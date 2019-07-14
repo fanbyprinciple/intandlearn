@@ -10,4 +10,4 @@ ______
 3. [`Gorgeous_maze`](https://editor.p5js.org/fanbyprinciple/present/BCRsUgTgS)
 4. [`Funky_maze_pathfinder`](https://editor.p5js.org/fanbyprinciple/present/z1Giukzjmy)
 5. [`Astar`](https://editor.p5js.org/fanbyprinciple/present/JeCz6Oncy)  need to revisit this.
-6. [`Genetic Algorithm`]() need to do
+6. [`Genetic Algorithm`](https://github.com/fanbyprinciple/intandlearn/blob/master/youTalkingToMe/Screenshot%20(3).png) screenshot refers to my code.

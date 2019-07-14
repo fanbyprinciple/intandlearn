@@ -20,31 +20,31 @@ function newChar() {
   }
   
   // Constructor (makes a random DNA)
-  class DNA {
-    constructor(num) {
-      // The genetic sequence
-      this.genes = [];
-      this.fitness = 0;
-      for (let i = 0; i < num; i++) {
-        this.genes[i] = newChar(); // Pick from range of chars
-      }
+class DNA {
+  constructor(num) {
+    // The genetic sequence
+    this.genes = [];
+    this.fitness = 0;
+    for (let i = 0; i < num; i++) {
+      this.genes[i] = newChar(); // Pick from range of chars
     }
+  }
   
     // Converts character array to a String
-    getPhrase() {
-      return this.genes.join("");
-    }
+  getPhrase() {
+    return this.genes.join("");
+  }
   
     // Fitness function (returns floating point % of "correct" characters)
-    calcFitness(target) {
-      let score = 0;
-      for (let i = 0; i < this.genes.length; i++) {
-        if (this.genes[i] == target.charAt(i)) {
-          score++;
-        }
+  calcFitness(target) {
+    let score = 0;
+     for (let i = 0; i < this.genes.length; i++) {
+      if (this.genes[i] == target.charAt(i)) {
+        score++;
       }
+    }
       
-      this.fitness = score / target.length;
+    this.fitness = score / target.length;
       
     }
   

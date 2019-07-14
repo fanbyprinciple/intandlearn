@@ -1,5 +1,5 @@
 let mutationRate = 0.01
-let totalPopulation = 10000
+let totalPopulation = 150
 
 // the pool of words initial setup
 let population
@@ -10,12 +10,11 @@ let matingPool
 // teh phrase to find
 let target 
 
-let bestPhrase;
-let allPhrases;
-let stats;
+let bestPhrase
+let allPhrases
+let stats
 
-let generation = 0
-
+let generation 
 
 
 function setup() {
@@ -32,14 +31,15 @@ function setup() {
     //stats.position(10,200);
     stats.class("stats");
 
-    target = 'to be or not to be'
+    
+    target = 'unicorn'
 
     // population contains the individual phrases array
     population = []
-
+    generation = 0
+    
     // each phrase is a DNA instance
     for(let i = 0; i <totalPopulation; i++){
-
         population[i] = new DNA(target.length)
     
     }
@@ -47,22 +47,26 @@ function setup() {
 
 function draw() {
 
+    frameRate(5)
 
     //calculating the fitness of each population element: a DNA instance
     for(let i = 0; i < population.length; i++){
         population[i].calcFitness(target)
+        //console.log(population[i].fitness)
     }
 
     //frameRate(3)
     let matingPool =[]
 
     // pushing a population element into the mating pool corresponding to the fitness
-    for(let i =0; i< population.length; i++){
+    for(let i =0; i < population.length; i++){
         let nnnn = floor(population[i].fitness * 100)
+        //console.log("nnnn: ",nnnn)
         for(let j = 0 ; j < nnnn ; j++){
             matingPool.push(population[i])
         }
     }
+    //console.log("mating pool: ", matingPool)
 
     for(let i =0 ; i < population.length; i++){
         let a = floor(random(matingPool.length))
@@ -72,28 +76,23 @@ function draw() {
         let partnerB = matingPool[b]
 
         let child = partnerA.crossover(partnerB)
+        child.mutate(mutationRate)
+        population[i] = child
 
-    
-        if(child.fitness > 0.6) {
-            console.log("in the clear")
-            frameRate(3)
-        }
-        if(child.getPhrase() != target)
-            { 
-                child.mutate(mutationRate) 
-                population[i] = child
-            }
-        else {
+        // if(child.getPhrase() != target)
+        //     { 
+        //         child.mutate(mutationRate) 
+        //         population[i] = child        
+        //     }
+        // else {
 
-            console.log("found !No Loop: ")
-            noLoop()
-        }
+        //     console.log("found !No Loop: ")
+        //     noLoop()
+        // }
         
-        //if(i = population.length -1 ) print("generation over!")
-        
-
-
     }
+
+    generation ++
 
     // If we find the target then stop
 
@@ -110,14 +109,8 @@ function draw() {
         }
     }
 
-    console.log("best fitness till now:", population[index].getPhrase())
-    best = population[index].getPhrase()
-    if(worldRecord === 1){
-        console.log("noLoop")
-        noLoop()
-    }
-
-    generation ++
+    //console.log("best fitness till now:", population[index].getPhrase())
+    best = population[index].getPhrase()   
 
     // this is for showing all the phrases
     bestPhrase.html("<h1>Best phrase:<br>" + best + "</h1>")
@@ -148,6 +141,14 @@ function draw() {
     
     allPhrases.html("All phrases:<br>" + everything)
     //noLoop()
+
+    console.log("best from population: ", population[index].getPhrase())
+    console.log("target: ", target)
+    if(population[index].getPhrase() == target){
+        console.log("noLoop")
+        noLoop()
+    }
+
 
 
 }

@@ -1,5 +1,5 @@
 let mutationRate = 0.01
-let totalPopulation = 150
+let totalPopulation = 200
 
 // the pool of words initial setup
 let population
@@ -19,35 +19,34 @@ let generation
 
 function setup() {
 
-    bestPhrase = createP("Best phrase:")
+    bestPhrase = createP("Best match:")
     bestPhrase.class("results")
+    bestPhrase.style('color: #EEAAAA')
     //bestPhrase.position(10,10)
 
     allPhrases = createP("All phrases:")
     allPhrases.position(600,10)
     allPhrases.class("all")
+    //allPhrases.style("background: #aaaaaa")
 
     stats = createP("Stats:");
     //stats.position(10,200);
     stats.class("stats");
+    
 
     
-    target = 'unicorn'
+    target = 'to be or not to be'
 
     // population contains the individual phrases array
     population = []
     generation = 0
     
+
     // each phrase is a DNA instance
     for(let i = 0; i <totalPopulation; i++){
         population[i] = new DNA(target.length)
     
     }
-}
-
-function draw() {
-
-    frameRate(5)
 
     //calculating the fitness of each population element: a DNA instance
     for(let i = 0; i < population.length; i++){
@@ -55,7 +54,12 @@ function draw() {
         //console.log(population[i].fitness)
     }
 
-    //frameRate(3)
+}
+
+function draw() {
+
+    //frameRate(5)
+
     let matingPool =[]
 
     // pushing a population element into the mating pool corresponding to the fitness
@@ -78,19 +82,16 @@ function draw() {
         let child = partnerA.crossover(partnerB)
         child.mutate(mutationRate)
         population[i] = child
-
-        // if(child.getPhrase() != target)
-        //     { 
-        //         child.mutate(mutationRate) 
-        //         population[i] = child        
-        //     }
-        // else {
-
-        //     console.log("found !No Loop: ")
-        //     noLoop()
-        // }
+        console.log(child.fitness)
         
     }
+
+    //calculating the fitness of each population element: a DNA instance
+    for(let i = 0; i < population.length; i++){
+        population[i].calcFitness(target)
+        //console.log(population[i].fitness)
+    }
+
 
     generation ++
 
@@ -101,7 +102,8 @@ function draw() {
     let best  = population[index].getPhrase() 
 
     for(let i =0 ; i < population.length; i++) {
-        //console.log(population[i].getPhrase())
+
+        console.log(population[i].fitness)
         if(population[i].fitness > worldRecord){
             index = i
             worldRecord = population[i].fitness
@@ -113,19 +115,23 @@ function draw() {
     best = population[index].getPhrase()   
 
     // this is for showing all the phrases
+    
     bestPhrase.html("<h1>Best phrase:<br>" + best + "</h1>")
 
+    
     let statstext = "total generations:     " + generation + "<br>";
     let total = 0;
     for (let i = 0; i < population.length; i++) {
       total += population[i].fitness;
     }
+
     
     statstext += "average fitness:       " + nf((total/population.length)* 100) + "<br>";
     statstext += "total population:      " + totalPopulation + "<br>";
     statstext += "mutation rate:         " + floor(mutationRate * 100) + "%";
 
-    stats.html(statstext);
+    
+    stats.html("<i>" + statstext + "</i>");
 
 
     let everything = ""
@@ -139,11 +145,11 @@ function draw() {
     }
     
     
-    allPhrases.html("All phrases:<br>" + everything)
+    allPhrases.html("<b>All phrases:</b><br>" + everything)
     //noLoop()
 
-    console.log("best from population: ", population[index].getPhrase())
-    console.log("target: ", target)
+    //console.log("best from population: ", population[index].getPhrase())
+    //console.log("target: ", target)
     if(population[index].getPhrase() == target){
         console.log("noLoop")
         noLoop()

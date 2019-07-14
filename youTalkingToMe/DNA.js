@@ -46,29 +46,29 @@ class DNA {
       
     this.fitness = score / target.length;
       
-    }
+  }
   
     // Crossover
-    crossover(partner) {
-      // A new child
-      let child = new DNA(this.genes.length);
+  crossover(partner) {
+    // A new child
+    let child = new DNA(this.genes.length);
   
-      let midpoint = floor(random(this.genes.length)); // Pick a midpoint
+    let midpoint = floor(random(this.genes.length)); // Pick a midpoint
   
       // Half from one, half from the other
-      for (let i = 0; i < this.genes.length; i++) {
-        if (i > midpoint) child.genes[i] = this.genes[i];
-        else child.genes[i] = partner.genes[i];
-      }
-      return child;
+    for (let i = 0; i < this.genes.length; i++) {
+      if (i > midpoint) child.genes[i] = this.genes[i];
+      else child.genes[i] = partner.genes[i];
     }
+    return child;
+  }
   
     // Based on a mutation probability, picks a new random character
-    mutate(mutationRate) {
-      for (let i = 0; i < this.genes.length; i++) {
-        if (random(1) < mutationRate) {
-          this.genes[i] = newChar();
-        }
+   mutate(mutationRate) {
+    for (let i = 0; i < this.genes.length; i++) {
+      if (random(1) < mutationRate) {
+        this.genes[i] = newChar();
       }
     }
   }
+}

@@ -21,17 +21,18 @@ function setup() {
 
     bestPhrase = createP("Best match:")
     bestPhrase.class("results")
-    bestPhrase.style('color: #EEAAAA')
+    bestPhrase.style('color: #EE55FF; font-size:48; font-family: "Courier"')
     //bestPhrase.position(10,10)
 
     allPhrases = createP("All phrases:")
-    allPhrases.position(600,10)
+    allPhrases.position(1100,10)
     allPhrases.class("all")
-    //allPhrases.style("background: #aaaaaa")
+    allPhrases.style('font-size:14; font-family: "Courier"')
 
     stats = createP("Stats:");
     //stats.position(10,200);
     stats.class("stats");
+    stats.style('font-size:30; font-family: "Courier"')
     
 
     
@@ -131,7 +132,7 @@ function draw() {
     statstext += "mutation rate:         " + floor(mutationRate * 100) + "%";
 
     
-    stats.html("<i>" + statstext + "</i>");
+    stats.html( statstext );
 
 
     let everything = ""

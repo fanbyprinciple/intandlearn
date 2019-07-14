@@ -43,7 +43,9 @@ function newChar() {
           score++;
         }
       }
+      
       this.fitness = score / target.length;
+      
     }
   
     // Crossover

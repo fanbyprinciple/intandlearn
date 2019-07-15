@@ -36,7 +36,7 @@ function setup() {
     
 
     
-    target = 'to be or not to be'
+    target = 'Do you believe in God'
 
     // population contains the individual phrases array
     population = []

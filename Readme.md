@@ -2,6 +2,8 @@
 
 ## I code most of the in p5.js web editor so hopefully it still works while you are watching this
 
+On hiatus as I am currently followinggrokking deep learning.
+
 ______
 
 ## Demos
@@ -11,3 +13,5 @@ ______
 4. [`Funky_maze_pathfinder`](https://editor.p5js.org/fanbyprinciple/present/z1Giukzjmy)
 5. [`Astar`](https://editor.p5js.org/fanbyprinciple/present/JeCz6Oncy)  need to revisit this.
 6. [`Genetic Algorithm`](https://github.com/fanbyprinciple/intandlearn/blob/master/youTalkingToMe/Screenshot%20(3).png) screenshot refers to my code.
+
+

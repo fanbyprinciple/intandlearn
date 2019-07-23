@@ -1,15 +1,22 @@
 var rocket
 var lifespan
 var population
+var lifespan
+var count = 0
+var target
 
 function setup() {
     createCanvas(400,300)
     lifespan = 200
+    lifeP = createP()
+    target= createVector(width/2, 50)
+
     
 
-    rocket = new Rocket()
 
     population = new Population()
+
+    
 
 }
 
@@ -17,7 +24,17 @@ function draw() {
     background(50)
 
     population.run()
+    lifeP.html(count)
+    count++
 
+    
+    if(count == lifespan){
+     population =new Population()
+     count = 0
+    }
+
+
+    ellipse(target.x,target.y,18,18)
 }
 
 function Population() {
@@ -28,6 +45,7 @@ function Population() {
         this.rockets[i] = new Rocket()
     }
 
+
     this.run = function() {
         for (let i=0;i < this.popsize; i++){
             this.rockets[i].update()
@@ -35,6 +53,8 @@ function Population() {
         }
 
     }
+
+
 }
 
 function DNA() {
@@ -53,19 +73,18 @@ function Rocket() {
     this.vel = createVector()
     this.acc = createVector()
     this.dna = new DNA()
-    this.count = 0
 
     this.applyForce = function(force){
         this.acc.add(force)
 
     }
 
-    this.update = function() {
-        this.applyForce(this.dna.genes[this.count])
+    this.update = function() { 
+        this.applyForce(this.dna.genes[count])
         this.vel.add(this.acc)
         this.pos.add(this.vel)
         this.acc.mult(0)
-        this.count +=1
+        
     }
 
     this.show = function() {
@@ -75,7 +94,7 @@ function Rocket() {
         translate(this.pos.x, this.pos.y)
         rotate(this.vel.heading())
         rectMode(CENTER)
-        rect(0,0,50,10)
+        rect(0,0,25,5)
         pop()
     }
 

@@ -6,9 +6,16 @@ var count = 0
 var target
 var generation = 0
 
+var rx = 100
+var ry = 150
+var rw =200
+var rh =10
+
+var maxforce =0.2
+
 function setup() {
     createCanvas(400,300)
-    lifespan = 200
+    lifespan = 400
     lifeP = createP()
     target= createVector(width/2, 50)
 
@@ -37,8 +44,8 @@ function draw() {
      generation++
     }
 
-    
-    rect(100,150,200,10)
+
+    rect(100,150,200,rh)
 
 
     ellipse(target.x,target.y,18,18)
@@ -119,7 +126,7 @@ function DNA(genes) {
     this.genes=[]
     for(let i =0; i <lifespan ; ++i){
         this.genes[i] = p5.Vector.random2D()
-        this.genes[i].setMag(0.1)
+        this.genes[i].setMag(maxforce)
         }
     }
     this.crossover = function(partner) {
@@ -140,7 +147,7 @@ function DNA(genes) {
         for (let i =0; i < this.genes.length; i++){
             if(random(i) <0.01){
                 this.genes[i] = p5.Vector.random2D()
-                this.genes[i].setMag(0.1)
+                this.genes[i].setMag(maxforce)
             }
         }
         
@@ -155,6 +162,8 @@ function Rocket(dna) {
     this.acc = createVector()
 
     this.completed = false
+
+    this.crashed =false
 
     if(dna){
         this.dna = dna
@@ -176,17 +185,42 @@ function Rocket(dna) {
         if(this.completed){
             this.fitness *= 10
         }
+
+        if(this.crashed){
+            this.fitness /= 10
+        }
         
 
 
     }
 
     this.update = function() { 
+
+        let d = dist(this.pos.x,this.pos.y,target.x,target.y)
+        if(d <10){
+            this.completed=true
+            this.pos =target.copy()
+        }
+
+        if(this.pos.x >rx && this.pos.x < rx+rw && this.pos.y >ry && this.pos.y<ry+rh){
+            this.crashed = true
+        }
+
+        if(this.pos.x >width || this.pos.x < 0 ){
+            this.crashed = true
+        }
+
+        if(this.pos.y >height || this.pos.y< 0 ){
+            this.crashed = true
+        }
+
+
         this.applyForce(this.dna.genes[count])
-        if(!this.completed){
+        if(!this.completed && !this.crashed){
             this.vel.add(this.acc)
             this.pos.add(this.vel)
             this.acc.mult(0)
+            this.vel.limit(4)
         }
         
         

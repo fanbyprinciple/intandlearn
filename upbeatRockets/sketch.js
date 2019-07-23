@@ -1,9 +1,10 @@
 var rocket
-
+var lifespan
 var population
 
 function setup() {
     createCanvas(400,300)
+    lifespan = 200
     
 
     rocket = new Rocket()
@@ -36,21 +37,35 @@ function Population() {
     }
 }
 
+function DNA() {
+    this.genes=[]
+    for(let i =0; i <lifespan ; ++i){
+        this.genes[i] = p5.Vector.random2D()
+        this.genes[i].setMag(0.1)
+    }
+
+
+
+}
+
 function Rocket() {
-    this.pos = createVector(width/2,height-10)
-    this.vel = p5.Vector.random2D()
+    this.pos = createVector(width/2,height)
+    this.vel = createVector()
     this.acc = createVector()
+    this.dna = new DNA()
+    this.count = 0
 
     this.applyForce = function(force){
-        console.log("Hello")
         this.acc.add(force)
+
     }
 
     this.update = function() {
-      
+        this.applyForce(this.dna.genes[this.count])
         this.vel.add(this.acc)
         this.pos.add(this.vel)
-        this.acc *= 0
+        this.acc.mult(0)
+        this.count +=1
     }
 
     this.show = function() {

@@ -1,3 +1,8 @@
+
+
+
+
+
 let x_vals = []
 let y_vals = []
 
@@ -13,13 +18,17 @@ function setup(){
 }
 
 function draw(){
-    if(x_vals.length >0){
-        const ys = tf.tensor1d(y_vals)
-        optimizer.minimize(()=>{
-            loss(predict(x_vals), ys)
-        })
-    }
 
+    tf.tidy(()=>{
+        if(x_vals.length >0){
+            const ys = tf.tensor1d(y_vals)
+            optimizer.minimize(()=> loss(predict(x_vals),y_vals))
+        
+        }
+
+    })
+    
+    
     background(0)
 
     stroke (255)
@@ -28,23 +37,27 @@ function draw(){
         let px = map(x_vals[i],0,1,0, width)
         let py = map(y_vals[i],0,1, height,0)
         point(px,py)
-    }
+    } 
+    
+    let ys = predict([0,1])
 
-    const lineX = [0,1]
-    const ys = tf.tidy(()=>predict(lineX))
-    let lineY = ys.dataSync()
-    ys.dispose()
+    //xs.print()
+    //ys.print()
 
-    let x1 = map(lineX[0],0,1,0,width)
-    let x2 = map(lineX[1],0,1,0,width)
+    //x1 and x2 are chosen so that the line come in the middle
+    tf.tidy(()=>{
+        let x1 = map(0,0,1,0,width)
+        let x2 = map(1, 0 ,1, 0, width)
 
-    let y1 = map(lineY[0], 0, 1,height, 0)
-    let y2 = map(lineY[1],0,1,height, 0)
+        let lineY = ys.dataSync()
+        let y1 = map(lineY[0], 0, 1, height, 0)
+        let y2 = map(lineY[1], 0, 1, height,0)
 
-    strokeWeight(2)
-    line(x1,y1,x2,y2)
-
-    console.log(tf.memory().numTensors)
+        strokeWeight(2)
+        line (x1,y1, x2, y2)
+    })
+    
+    
 }
 
 function loss(pred,label){
@@ -52,11 +65,13 @@ function loss(pred,label){
 }
 
 function predict(x){
-    const xs = tf.tensor1d(x_vals)
+    const xs = tf.tensor1d(x)
     // y = mx + b
 
     const ys = xs.mul(m).add(b) 
     return ys
+
+
 }
 
 function mousePressed(){

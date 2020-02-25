@@ -17,7 +17,7 @@ function initCoeffs(){
         coeffs[i] = tf.variable(tf.scalar(random(-1,1)))
     }
 
-    const ys
+    // const ys
     for(let i=0; i < degree; ++i){
         // mumbo jumbo to do
     }

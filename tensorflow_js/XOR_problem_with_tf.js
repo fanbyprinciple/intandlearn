@@ -97,6 +97,7 @@ function draw(){
                 textSize(8)
                 textAlign(CENTER, CENTER)
                 text(
+                    // nf converts to strings
                     nf(y_values[index],1,2),
                     i * resolution + resolution /2,
                     j * resolution + resolution /2

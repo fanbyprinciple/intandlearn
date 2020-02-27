@@ -12,3 +12,7 @@ https://www.youtube.com/watch?v=dLp10CFIvxI&list=PLRqwX-V7Uu6YIeVA3dNxbR9PYj4wV3
 ### Drawing a line of best fit trained on randomly generated points. 
 
 ![](line.gif)
+
+### XOR problem with tf.js
+
+![](xor.gif)

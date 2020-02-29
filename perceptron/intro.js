@@ -3,12 +3,15 @@ let points = []
 let num_of_points = 100
 let perceptron
 
+let training
+let trainingIndex
+
 function setup() {
     createCanvas(300,300)
     perceptron = new Perceptron()
     let inputs = [-1,0.5]
-    
-    
+    trainingIndex = 1
+        
     for (let i=0 ; i < num_of_points; ++i){
         points[i] = new Point()
     }
@@ -47,6 +50,18 @@ function draw(){
         noStroke()
         ellipse(point.x, point.y,4, 4)        
     })
+
+    
+    training = points[trainingIndex]
+    console.log(trainingIndex)
+    let inputs = [training.x, training.y]
+    perceptron.train(inputs, training.label)
+    trainingIndex++
+    if (trainingIndex == points.length){
+        //noLoop()
+        trainingIndex = 0
+    }
+    
 
     
 }

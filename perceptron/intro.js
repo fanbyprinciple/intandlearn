@@ -15,13 +15,11 @@ function setup() {
     for (let i=0 ; i < num_of_points; ++i){
         points[i] = new Point()
     }
-    
     let guess = perceptron.guess(inputs)
-    
 }
 
 function mousePressed(){
-    points.forEach(()=>{
+    points.forEach((point)=>{
         let inputs = [point.x, point.y]
         perceptron.train(inputs, point.label)
     })
@@ -51,7 +49,6 @@ function draw(){
         ellipse(point.x, point.y,4, 4)        
     })
 
-    
     training = points[trainingIndex]
     console.log(trainingIndex)
     let inputs = [training.x, training.y]

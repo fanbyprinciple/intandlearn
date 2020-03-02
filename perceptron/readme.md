@@ -6,3 +6,10 @@
 ### training each points individually and then looping back to start
 
 ![](points.gif)
+
+### training brain cells
+
+![](braincells.gif)
+
+### buggy line estimation
+![](lineest.gif)

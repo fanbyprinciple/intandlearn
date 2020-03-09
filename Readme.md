@@ -2,8 +2,8 @@
 
 ## I code most of the in p5.js web editor so hopefully it still works while you are watching this
 
-On hiatus as I am currently followinggrokking deep learning.
-
+Other shiffman works :
+https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw
 ______
 
 ## Demos

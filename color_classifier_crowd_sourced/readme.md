@@ -3,4 +3,5 @@
 ## initial crod sourcing exercise
 ![](redraw.gif)
 
-## needs to include firebase
+## after adding firebase
+![](firebase.png)

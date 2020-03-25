@@ -12,8 +12,10 @@ function setup(){
 }
 
 function highlight(){
+    console.log(this)
     this.height = 100
     this.style('background-color', color(random(255), random(255), random(255)))
+    this.style('font-size', '32px')
     console.log(this.html())
 
     var s = this.html().replace()

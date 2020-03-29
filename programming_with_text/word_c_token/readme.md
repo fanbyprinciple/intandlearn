@@ -9,3 +9,7 @@ The dominant word( with most count value) seems to throw the distance function t
 
 Use with caution.
 ![](word_visualisation.gif)
+
+## second visualisation
+
+![](screenshot.png)

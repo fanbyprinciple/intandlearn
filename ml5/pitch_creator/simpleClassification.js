@@ -1,11 +1,17 @@
 let model
 let targetLabel = 'C'
 let state  = "collecting"
+let colorLabel
 
 //let trainingData = []
 
 function setup(){
     createCanvas(400,400)
+    colorLabel = {
+        C : color(0,255,0),
+        D : color(0,0,255),
+        F : color(255,0,0)
+    }
     options = {
         inputs : ['x', 'y'],
         outputs: ['label'],
@@ -37,9 +43,43 @@ function whileTraining(epoch, loss){
 function finishedTraining() {
     console.log("Training finished")
     state = "predicting"
+    colorWash()
 }
 
-function drawBubbles(results=null){
+let k = [25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400]
+let l = [25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400]
+let knumber
+let lnumber
+
+function colorWash(){
+    console.log("color wash initiated")
+    // doesn't work because of asynch callbacks
+    // for( k=0; k < width; k+=25){
+    //     for( l=0; l< height ;l+= 25){
+    //         let inputs = {
+    //             x : l,
+    //             y : k
+    //         }
+    //         model.classify(inputs, gotResults)
+    //     }
+    // }
+
+    k.forEach((kitem, kindex)=>{
+        l.forEach((litem, lindex)=>{
+            knumber = kitem
+            lnumber = litem
+            console.log(knumber)
+            console.log(lnumber)
+            let inputs = {
+                x : kitem,
+                y : litem
+            }
+            model.classify(inputs,gotResults)
+        })
+    })
+}
+
+function drawBubbles(results=null,x=null,y=null){
     stroke(0)
     noFill()
     if(state == "collecting"){
@@ -47,8 +87,11 @@ function drawBubbles(results=null){
             ellipse(mouseX+random (-2,2), mouseY + random(-2,2),24,24)
         }
     } else if(state == "predicting"){
-        fill(102,204,0)
-        ellipse(mouseX, mouseY, 24)
+        labelColor = colorLabel[results[0].label]
+        labelColor.setAlpha(Math.floor(results[0].confidence * 256))
+        fill(labelColor)
+        noStroke()
+        ellipse(x, y, 24)
     }
     fill(0)
     noStroke()
@@ -57,7 +100,7 @@ function drawBubbles(results=null){
     if(state == "collecting"){
         text(targetLabel, mouseX,mouseY)
     } else if(state == "predicting"){
-        text(results[0].label,mouseX,mouseY)
+        text(results[0].label,x,y)
     }
     
     
@@ -89,7 +132,8 @@ function gotResults(error,results){
     if(error){
         console.log(error)
     } else {
-        console.log(results)
-        drawBubbles(results)
+        //console.log(results)
+        console.log(knumber,lnumber)
+        drawBubbles(results,knumber,lnumber)
     }
 }

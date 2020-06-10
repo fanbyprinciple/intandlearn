@@ -10,3 +10,6 @@ slice function makes a copu of array from a particular index to a particular ind
 
 3. Getting individual values from csv :
 ![](bare_values.png)
+
+4. Chart.js for creating a chart
+![](global_temp.png)

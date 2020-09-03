@@ -9,3 +9,6 @@ Credits : // Daniel Shiffman
 
 1. Facing a bug:
 ![](bug.png)
+
+2. Perfect generation:
+![](perfect_geny.gif)

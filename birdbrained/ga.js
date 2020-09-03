@@ -1,5 +1,5 @@
 function nextGeneration(){
-  
+  console.log("next generation")
   
   calculateFitness()
   
@@ -11,29 +11,25 @@ function nextGeneration(){
   savedBirds = []
 }
 
-function pickOne(){
-  
-  var index=0
-  var r =random(1)
-  
-  while(r>0){
-    r = r - savedBirds[index].fitness
-    index++
+function pickOne() {
+  let index = 0;
+  let r = random(1);
+  while (r > 0) {
+    r = r - savedBirds[index].fitness;
+    index++;
   }
-  index--
-  
-  let bird = savedBirds[index]
-  //let bird = random(savedBirds)
-  let child = new Bird(bird.brain)
-  child.mutate()
-  return child
+  index--;
+  let bird = savedBirds[index];
+  let child = new Bird(bird.brain);
+  child.mutate();
+  return child;
 }
 
 function calculateFitness() {
   
   let sum = 0
   
-  for(let bird in savedBirds){
+  for(let bird of savedBirds){
     sum += bird.score
   }
   

@@ -14,4 +14,8 @@ ______
 5. [`Astar`](https://editor.p5js.org/fanbyprinciple/present/JeCz6Oncy)  need to revisit this.
 6. [`Genetic Algorithm`](https://github.com/fanbyprinciple/intandlearn/blob/master/youTalkingToMe/Screenshot%20(3).png) screenshot refers to my code.
 
+7. Neurorevolution flappy bird:
+
+![](perfect_geny.gif)
+
 

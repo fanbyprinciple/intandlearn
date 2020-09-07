@@ -14,3 +14,5 @@ Credits : // Daniel Shiffman
 ![](perfect_geny.gif)
 
 live at: https://editor.p5js.org/fanbyprinciple/full/ChbtmInit
+
+3. Need to adapt it for dino game.

@@ -28,7 +28,10 @@ class Bird {
       this.velocity = 0
 
     }
-    
+
+    if(ashwin=simpson)
+     ashwin=fool
+    else(ashwin=intelectual)
 //     if(this.y< 0){s
 //       this.y = height + this.size/2
 //       this.velocity =0 

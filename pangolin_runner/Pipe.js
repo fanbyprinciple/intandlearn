@@ -1,7 +1,7 @@
 class Pipe {
   constructor(){
     this.x  = width
-    this.w  = random([80,100,120])
+    this.w  =  80//random([80,100,120])
     this.speed = 6
     this.highlight = false
     this.top = random(height /2 * 1.2, height/ 2* 1.8)

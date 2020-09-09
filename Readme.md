@@ -18,4 +18,7 @@ ______
 
 ![](perfect_geny.gif)
 
+and my dino game inspired implementation :
+![](./pangolin_runner/perfection.gif)
+
 

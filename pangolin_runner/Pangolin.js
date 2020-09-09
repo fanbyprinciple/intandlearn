@@ -15,7 +15,8 @@ class Pangolin {
     if(brain){
       this.brain = brain.copy()
     } else {
-      this.brain = new NeuralNetwork(3,3,2)
+      this.brain = new NeuralNetwork(2,8,2)
+  
     }
   }
   
@@ -49,13 +50,12 @@ class Pangolin {
     }
     
     let inputs = []
-    inputs[0] = closest.x/width
-    inputs[1] = closest.top/height
-    inputs[2] = closest.width/width
-    let outputs = this.brain.predict(inputs)
-    //console.log(outputs)
-    if(outputs[0]>outputs[1]){
-      
+    inputs[0] = (this.x - closest.x)/width
+    inputs[1] = (height - closest.top)/height
+    //inputs[2] = closest.w/width
+    let output = this.brain.predict(inputs)
+    //console.log(output)
+    if(output[0]>output[1]){
       this.up()
     }
     

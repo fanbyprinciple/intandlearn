@@ -1,6 +1,10 @@
-let genNumber = 0
+
 function nextGeneration(){
-  console.log("generation: ", genNumber++)
+  console.log("generation: ", genNumber++ , "score: " , pipeScore)
+  if(pipeScore > highestScore){
+    highestScore = pipeScore
+  }
+  pipeScore= 0
   calculateFitness()
   
   for (let i=0; i < TOTAL; i++){

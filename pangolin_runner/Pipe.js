@@ -1,21 +1,17 @@
 class Pipe {
   constructor(){
     this.x  = width
-    this.w  = 80
+    this.w  = random([80,100,120])
     this.speed = 6
     this.highlight = false
-    this.top = random(height / 6, 1/2 * height)
+    this.top = random(height /2 * 1.2, height/ 2* 1.8)
   }
    
   hits(pango){
     
     if(pango.x > this.x && pango.x < this.x + this.w) {
-      if((pango.y) > height - (this.top + pango.size/2) ){
-        //console.log("pango: ",pango.x,  pango.y, height - pango.y)
-        //console.log("Pipe: ", this.x,  this.top)
-      
+      if(pango.y > this.top && pango.y < height ){      
         return true
-        
       } 
     }
     return false
@@ -28,8 +24,8 @@ class Pipe {
     } else {
       fill(255)
     }
-    rectMode(CENTER)
-    rect(this.x, height, this.w, this.top )
+    //rectMode(CENTER)
+    rect(this.x,this.top, this.w, height )
     
   }
   

@@ -7,3 +7,7 @@ Basic snake from here: https://editor.p5js.org/codingtrain/sketches/HkDVpSvDm
 full screen : https://editor.p5js.org/fanbyprinciple/full/mQFqGC8gH
 
 ![](snake.gif)
+
+Added comtrols
+
+![](snake_control.gif)

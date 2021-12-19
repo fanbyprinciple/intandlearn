@@ -1,0 +1,136 @@
+* {
+  margin :0;
+  padding:0;
+}
+
+main {
+  min-height: 100vh;
+  background: linear-gradient(to right top, #65d5c9, #6cdbeb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.glass {
+  background: white;
+  min-height: 80vh;
+  width: 60%;
+  background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(250,250,250,0.3));
+  border-radius: 2rem;
+}
+
+.container {
+  height: 500px;
+  width: 350px;
+  background-color: #a20594;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat {
+  position: relative;
+  top:150px;
+  left: 170px;
+}
+.face{
+  background-color: #33292b;
+  height: 90px;
+  width: 150px;
+  border-radius: 30px;
+}
+
+.ear-l, .ear-r{
+  width:0;
+  height:0;
+  border-bottom: 50px solid #33292b;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  position: relative;
+
+}
+
+.ear-l{
+  bottom: 35px;
+  transform: rotate(-30deg);
+}
+
+.ear-r{
+  bottom: 85px;
+  left : 110px;
+  transform: rotate(30deg);
+}
+
+.inner1 {
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid #d36148;
+  border-left: 25px solid transparent;
+  right: 25px;
+  position: relative;
+}
+
+.inner2 {
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid #d36148;
+  border-left: 25px solid transparent;
+  bottom:-6px;
+  right:14px;
+  transform: rotate(-20deg);
+  position: relative;
+}
+
+.eye-l, .eye-r {
+  background-color: #d2873b;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.eye-l {
+  bottom: 75px;
+  left: 30px;
+}
+
+.eye-r{
+  bottom: 105px;
+  left: 90px;
+}
+
+.eyeball{
+  height: 20px;
+  background-color: #33292b;
+  width: 7px;
+  border-radius: 50%;
+  position: relative;
+  top:3px;
+  left:9px;
+  animation: eyeball 4s infinite;
+}
+
+@keyframes eyeball {
+  0%{
+    transform:
+/*       rotate(0deg) */
+              translate(-10px)
+/*               rotate(0deg); */
+  
+  }
+  50%{
+    transform:
+      translate(10px);
+  }
+  100%{
+    transform:rotate(360deg)
+              translate(-10px)
+              rotate(-360deg);
+  }
+}
